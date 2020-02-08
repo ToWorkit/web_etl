@@ -7,6 +7,11 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 // hadoop的数据类型
+
+/**
+ * 对接外部数据的层，表结构定义最好跟外部数据源保持一致
+ * 术语： 贴源表
+ */
 public class WebLogBean implements Writable {
 
     // 日志信息
@@ -19,6 +24,18 @@ public class WebLogBean implements Writable {
     private String body_bytes_sent;// 记录发送给客户端文件主体内容大小
     private String http_referer;// 用来记录从那个页面链接访问过来的
     private String http_user_agent;// 记录客户浏览器的相关信息
+
+    public void set(boolean valid,String remote_addr, String remote_user, String time_local, String request, String status, String body_bytes_sent, String http_referer, String http_user_agent) {
+        this.valid = valid;
+        this.remote_addr = remote_addr;
+        this.remote_user = remote_user;
+        this.time_local = time_local;
+        this.request = request;
+        this.status = status;
+        this.body_bytes_sent = body_bytes_sent;
+        this.http_referer = http_referer;
+        this.http_user_agent = http_user_agent;
+    }
 
     public boolean isValid() {
         return valid;
